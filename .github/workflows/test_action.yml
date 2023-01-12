@@ -72,6 +72,7 @@ jobs:
       - name: Prepare Workdir 
         shell: bash
         run: |
+          set shopt -s extglob .bashrc
           mkdir ${{env.PROJECT_DIR}}
           mv !(${{env.PROJECT_DIR}}) ${{env.PROJECT_DIR}}
           
