@@ -52,17 +52,17 @@ jobs:
       name: 'Development'
 
     steps:
-      - name: Set up Python version
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: 'pip'
-          
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: python-app
           path: .
+      
+      - name: Set up Python version
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
           
       - name: Verif
         run: |
