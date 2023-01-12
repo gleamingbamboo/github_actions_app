@@ -61,21 +61,22 @@ jobs:
       - name: Verif
         run:
           ls -al
+          echo "$PROJECT_DIR"
           
       - name: Prepare Workdir 
         shell: bash
         run: |
-          mkdir $my_dir
-          mv * $my_dir
+          mkdir $PROJECT_DIR
+          mv * $PROJECT_DIR
           
       - name: start virtual environment
-        working-directory: $my_dir
+        working-directory: $PROJECT_DIR
         run: |
           python -m venv venv
           source venv/bin/activate
           
       - name: Start application
-        working-directory: $my_dir
+        working-directory: $PROJECT_DIR
         run:
           ls -al
           python3 main.py
