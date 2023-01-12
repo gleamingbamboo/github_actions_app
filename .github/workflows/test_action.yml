@@ -59,7 +59,7 @@ jobs:
           path: .
           
       - name: Verif
-        run:
+        run: |
           ls -al
           echo "$PROJECT_DIR"
           
@@ -77,6 +77,6 @@ jobs:
           
       - name: Start application
         working-directory: $PROJECT_DIR
-        run:
+        run: |
           ls -al
           python3 main.py
