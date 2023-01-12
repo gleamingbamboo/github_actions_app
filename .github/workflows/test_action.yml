@@ -3,7 +3,7 @@ name: My-Github-Action
 env:
   PYTHON_VERSION: '3.11'              # set this to the Python version to use
   PROJECT_NAME: my_project
-  PROJECT_DIR: my_dir
+  PROJECT_DIR: /home/elytvyn/my_app
   
 on:
   push:
