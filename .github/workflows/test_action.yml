@@ -3,7 +3,7 @@ name: My-Github-Action
 env:
   PYTHON_VERSION: '3.11'              # set this to the Python version to use
   PROJECT_NAME: my_project
-  PROJECT_DIR: /home/elytvyn/my_app
+  PROJECT_DIR: my_app
   
 on:
   push:
@@ -73,7 +73,7 @@ jobs:
         shell: bash
         run: |
           mkdir ${{env.PROJECT_DIR}}
-          mv * ${{env.PROJECT_DIR}}
+          mv !(${{env.PROJECT_DIR}}) ${{env.PROJECT_DIR}}
           
       - name: start virtual environment
         working-directory: ${{env.PROJECT_DIR}}
