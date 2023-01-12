@@ -74,7 +74,7 @@ jobs:
         run: |
           set shopt -s extglob .bashrc
           mkdir ${{env.PROJECT_DIR}}
-          mv !(${{env.PROJECT_DIR}}) ${{env.PROJECT_DIR}}
+          mv `ls -I ${{env.PROJECT_DIR}}` ${{env.PROJECT_DIR}}
           
       - name: start virtual environment
         working-directory: ${{env.PROJECT_DIR}}
