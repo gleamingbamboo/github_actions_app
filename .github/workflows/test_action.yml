@@ -1,7 +1,6 @@
 name: My-Github-Action
 
 env:
-  AZURE_WEBAPP_NAME: github-actions-app  # set this to the name of your Azure Web App
   PYTHON_VERSION: '3.11'              # set this to the Python version to use
 
 on:
@@ -39,11 +38,11 @@ jobs:
           name: python-app
           path: |
             .
-            !venv/
+            !.git/
+            !.gitignore/
+            !.github/
 
   deploy:
-    permissions:
-      contents: none
     runs-on: self-hosted
     needs: build
     environment:
