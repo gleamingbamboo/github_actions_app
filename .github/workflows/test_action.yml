@@ -65,17 +65,17 @@ jobs:
       - name: Prepare Workdir 
         shell: bash
         run: |
-          mkdir ${{env.my_dir}}
-          mv * ${{env.my_dir}}
+          mkdir $my_dir
+          mv * $my_dir
           
       - name: start virtual environment
-        working-directory: ${{env.my_dir}}
+        working-directory: $my_dir
         run: |
           python -m venv venv
           source venv/bin/activate
           
       - name: Start application
-        working-directory: ${{env.my_dir}}
+        working-directory: $my_dir
         run:
           ls -al
           python3 main.py
