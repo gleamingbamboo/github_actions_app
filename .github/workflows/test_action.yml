@@ -1,0 +1,61 @@
+name: My-Github-Action
+
+env:
+  AZURE_WEBAPP_NAME: your-app-name  # set this to the name of your Azure Web App
+  PYTHON_VERSION: '3.11'              # set this to the Python version to use
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: master
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python version
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+
+      - name: Upload artifact for deployment jobs
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-app
+          path: |
+            .
+            !venv/
+
+  deploy:
+    permissions:
+      contents: none
+    runs-on: self-hosted
+    needs: build
+    environment:
+      name: 'Development'
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: python-app
+          path: .
+
+      - name: 'Deploy to Host'
+        run:
+          ls -al
