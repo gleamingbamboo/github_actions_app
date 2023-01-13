@@ -1,4 +1,4 @@
-name: My-Github-Action
+name: Run-In-Docker
 
 env:
   PYTHON_VERSION: '3.11'              # set this to the Python version to use
