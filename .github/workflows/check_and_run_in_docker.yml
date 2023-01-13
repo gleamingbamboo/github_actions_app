@@ -61,4 +61,4 @@ jobs:
       - name: Docker build
         run: |
           echo "${{ github.event.repository.name }}"
-          docker build -t latest -f ${{ github.event.repository.name }}
+          docker build -t latest -f ${{ github.event.repository.name }} .
