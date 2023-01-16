@@ -57,10 +57,14 @@ jobs:
         with:
           name: python-app
           path: .
-      
-      - name: Docker build
-        run: |
-          pwd
+
+      - name: Verify folder
+        run:
           ls -al
-          echo "${{ github.event.repository.name }}"
-          docker build -t latest -f ${{ github.event.repository.name }} .
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}
